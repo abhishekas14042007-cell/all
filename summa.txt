@@ -1,0 +1,38 @@
+# Experiment 1
+git init
+git status
+git add index.html
+git commit -m "Add index.html"
+git status
+git diff
+git add style.css script.js
+git commit -m "Add CSS and JS files"
+
+# Experiment 2
+git init
+git add file.txt
+git commit -m "First commit"
+git log
+git add file.txt
+git status
+git config --global user.name "Your Name"
+git config --global user.email "your@email.com"
+git add file.txt
+git commit -m "Updated file.txt"
+
+# Experiment 3
+git add .
+git reset --hard HEAD~1
+git clone <repo-url>
+git status
+
+# Experiment 4
+git remote add origin https://github.com/username/repo.git
+git remote -v
+git branch -M main
+git push -u origin main
+git add .
+git commit -m "Updated file"
+git push
+git clone https://github.com/username/repo.git
+git remote -v
