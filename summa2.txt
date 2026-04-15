@@ -7,6 +7,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "Hello World"
+
+
 Experiment 10 -pytest
 name: Pytest Workflow
 
@@ -33,6 +35,9 @@ jobs:
 
       - name: Run tests
         run: pytest
+
+
+
 Experiment 11 – Multiple Jobs
 name: exp11-multi-job
 on: push
@@ -47,6 +52,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "Test step"
+
+
 Experiment 12 – Secret (safe fallback)
 name: exp12-secret
 on: push
@@ -56,6 +63,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "Using secret if available"
+
+
 Experiment 13 – Deploy Static Site (index.html)
 name: exp13-deploy
 on:
@@ -77,17 +86,36 @@ jobs:
         with:
           path: .
       - uses: actions/deploy-pages@v2
+
+
 Experiment 14 – Environment Variables
-name: exp14-env
+name: Secret + Env
+
 on: push
 
 jobs:
-  env:
+  demo:
     runs-on: ubuntu-latest
     env:
-      MODE: production
+      ENV_NAME: staging
+
     steps:
-      - run: echo "Mode is $MODE"
+      - name: Use both
+        run: echo "Env=$ENV_NAME Secret=${{ secrets.API_KEY }}"
+
+name: Protected Deploy
+
+on: push
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - run: echo "Deploying securely"
+
+
 Experiment 15 – Docker Build
 name: Docker Setup and Build
 
@@ -106,6 +134,8 @@ jobs:
 
       - name: Build Docker Image
         run: docker build -t myapp .
+
+
 Experiment 16 – Basic CI Trigger
 name: exp16-ci
 on: push
@@ -115,6 +145,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "CI triggered"
+
+
 Experiment 17 – Debug Workflow
 name: exp17-debug
 on: push
@@ -124,6 +156,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "Debugging workflow"
+
+
 Experiment 18 – CI Pipeline (Build + Test)
 name: exp18-pipeline
 on: push
@@ -138,6 +172,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "Testing..."
+
+
 Experiment 19 – Deploy from Folder
 name: exp19-deploy-folder
 on:
@@ -159,6 +195,8 @@ jobs:
         with:
           path: ./dist
       - uses: actions/deploy-pages@v2
+
+
 Experiment 20 – Docker with Tag
 name: exp20-docker-tag
 on: push
