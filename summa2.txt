@@ -7,16 +7,32 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "Hello World"
-Experiment 10 – Run Tests
-name: exp10-test
-on: [push, pull_request]
+Experiment 10 -pytest
+name: Pytest Workflow
+
+on:
+  push:
+  pull_request:
 
 jobs:
   test:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v3
-      - run: echo "Running tests..."
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          pip install pytest
+
+      - name: Run tests
+        run: pytest
 Experiment 11 – Multiple Jobs
 name: exp11-multi-job
 on: push
