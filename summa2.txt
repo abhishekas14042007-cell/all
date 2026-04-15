@@ -1,0 +1,147 @@
+Experiment 9 – Hello World
+name: exp9-hello
+on: push
+
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Hello World"
+Experiment 10 – Run Tests
+name: exp10-test
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: echo "Running tests..."
+Experiment 11 – Multiple Jobs
+name: exp11-multi-job
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Build step"
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Test step"
+Experiment 12 – Secret (safe fallback)
+name: exp12-secret
+on: push
+
+jobs:
+  secret:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Using secret if available"
+Experiment 13 – Deploy Static Site (index.html)
+name: exp13-deploy
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/configure-pages@v3
+      - uses: actions/upload-pages-artifact@v2
+        with:
+          path: .
+      - uses: actions/deploy-pages@v2
+Experiment 14 – Environment Variables
+name: exp14-env
+on: push
+
+jobs:
+  env:
+    runs-on: ubuntu-latest
+    env:
+      MODE: production
+    steps:
+      - run: echo "Mode is $MODE"
+Experiment 15 – Docker Build
+name: exp15-docker
+on: push
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: docker build -t myapp .
+Experiment 16 – Basic CI Trigger
+name: exp16-ci
+on: push
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "CI triggered"
+Experiment 17 – Debug Workflow
+name: exp17-debug
+on: push
+
+jobs:
+  debug:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Debugging workflow"
+Experiment 18 – CI Pipeline (Build + Test)
+name: exp18-pipeline
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Building..."
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Testing..."
+Experiment 19 – Deploy from Folder
+name: exp19-deploy-folder
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/configure-pages@v3
+      - uses: actions/upload-pages-artifact@v2
+        with:
+          path: ./dist
+      - uses: actions/deploy-pages@v2
+Experiment 20 – Docker with Tag
+name: exp20-docker-tag
+on: push
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: docker build -t myapp:v1 .
